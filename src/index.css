@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #2f3651;
+}
+
+@layer components {
+  .nav-li {
+    padding: 1rem;
+  }
+  .nav-li:hover {
+    cursor: pointer;
+    color: #8ebbff;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .btn {
+    background: #8ebbff;
+    color: #191a19;
+    width: 200px;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    margin: 1rem auto 1rem auto;
+    padding: 0.75rem 0;
+  }
+
+  .btn:hover {
+    color: #f9fafb;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+}
