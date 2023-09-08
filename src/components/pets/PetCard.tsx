@@ -46,7 +46,7 @@ export const PetCard = ({ pet }: PetCardProps) => {
       </div>
       <div className="mx-5">
         <h1 className="font-bold text-center my-1 text-base font-mono">
-          Cute dog looking for a home
+          {pet.title}
         </h1>
         <p className="text-sm mb-1">Breed: {pet.Breed}</p>
         <p className="text-sm mb-1">Place: {pet.Place}</p>

@@ -7,4 +7,5 @@ export interface IPets {
   Place: string;
   Age: string;
   Price: string;
+  title: string;
 }

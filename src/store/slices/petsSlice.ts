@@ -1,13 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IPets } from "../../types/models";
 
-// import dog from "../../assets/dog.jpeg";
-// import dog1 from "../../assets/dog1.jpeg";
-
 interface PetsState {
   loading: boolean;
   error: string;
-  pets: IPets[];
+  pets: IPets[],
+  count: number;
+}
+
+interface PetsPayload {
+  pets: IPets[],
+  count: number,
 }
 
 const initialState: PetsState = {
@@ -75,6 +78,7 @@ const initialState: PetsState = {
     //     Price: "50$",
     //   },
   ],
+  count: 0
 };
 
 export const petsSlice = createSlice({
@@ -84,9 +88,10 @@ export const petsSlice = createSlice({
     fetching: (state) => {
       state.loading = true;
     },
-    fetchSuccess: (state, action: PayloadAction<IPets[]>) => {
+    fetchSuccess: (state, action: PayloadAction<PetsPayload>) => {
       state.loading = false;
-      state.pets = action.payload;    
+      state.pets = action.payload.pets;
+      state.count = action.payload.count;
     },
     fetchError: (state, action: PayloadAction<Error>) => {
       state.loading = false;
