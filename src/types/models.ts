@@ -9,3 +9,9 @@ export interface IPets {
   Price: string;
   title: string;
 }
+
+export type IPetsSell = string
+
+export interface IFilter {
+  sell: IPetsSell;
+}

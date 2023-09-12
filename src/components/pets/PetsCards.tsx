@@ -39,7 +39,7 @@ export const PetsCards = () => {
               return <PetCard pet={pet} key={pet.id} />;
             })}
       </div>
-      <ReactPaginate
+      {pageCount && <ReactPaginate
         breakLabel="..."
         nextLabel=">"
         onPageChange={handlePageClick}
@@ -52,7 +52,7 @@ export const PetsCards = () => {
         previousClassName="py-2 px-2"
         nextClassName="py-2 px-2"
         activeClassName="text-blue"
-      />
+      />}
     </>
   );
 };

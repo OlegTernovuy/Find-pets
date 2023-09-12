@@ -1,10 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IPets } from "../../types/models";
+import { IFilter, IPets } from "../../types/models";
 
 interface PetsState {
   loading: boolean;
   error: string;
   pets: IPets[],
+  petsContainer: IPets[],
   count: number;
 }
 
@@ -78,6 +79,7 @@ const initialState: PetsState = {
     //     Price: "50$",
     //   },
   ],
+  petsContainer: [],
   count: 0
 };
 
@@ -91,6 +93,7 @@ export const petsSlice = createSlice({
     fetchSuccess: (state, action: PayloadAction<PetsPayload>) => {
       state.loading = false;
       state.pets = action.payload.pets;
+      state.petsContainer = action.payload.pets;
       state.count = action.payload.count;
     },
     fetchError: (state, action: PayloadAction<Error>) => {
@@ -104,6 +107,10 @@ export const petsSlice = createSlice({
         petExists.liked = !petExists.liked;
       }
     },
+    sellFilter: (state, action: PayloadAction<IFilter>) => {
+      state.pets = state.petsContainer
+        .filter(pet => pet.sell.includes(action.payload.sell))
+    }
   },
 });
 

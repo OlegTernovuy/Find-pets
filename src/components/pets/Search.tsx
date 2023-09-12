@@ -13,7 +13,7 @@ export const Search = () => {
 
   const debouncedSearch = useDebounce<string>(input.search, 600);
 
-  const searchPets = useCallback( async () => {
+  const searchPets = useCallback(async () => {
     const response = await axios.get<IPets[]>(`pets`, {
       params: {
         filter: debouncedSearch,
