@@ -6,16 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../src/store/store";
 import { SearchProvider } from "./providers/SearchProvider";
+import { AuthContextProvider } from "./providers/AuthProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <SearchProvider>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </SearchProvider>
+  <AuthContextProvider>
+    <SearchProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </SearchProvider>
+  </AuthContextProvider>
 );
