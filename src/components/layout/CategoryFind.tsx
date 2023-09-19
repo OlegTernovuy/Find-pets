@@ -48,7 +48,7 @@ export const CategoryFind = () => {
         >
           In good hands
         </button>
-        <button onClick={clearHandler} className="hover:text-blue">
+        <button onClick={clearHandler} className="md:pr-5 sm:mb-3 hover:text-blue text-center sm:flex justify-center">
           <BiXCircle />
         </button>
       </ul>

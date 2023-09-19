@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
-import { MainPage } from "./pages/MainPage";
-import { AuthPage } from "./pages/AuthPage";
-import { PetPage } from "./pages/PetPage";
+import { MainPage } from "./components/pages/MainPage";
+import { SignUpPage } from "./components/pages/SignUpPage";
+import { PetPage } from "./components/pages/PetPage";
+import { SignInPage } from "./components/pages/SignInPage";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path={"/"} element={<MainPage />} />
-        <Route path={"/auth"} element={<AuthPage />} />
+        <Route path={"/signUp"} element={<SignUpPage />} />
+        <Route path={"/signIn"} element={<SignInPage />} />
         <Route path={"/pet/:id"} element={<PetPage />} />
       </Routes>
     </div>

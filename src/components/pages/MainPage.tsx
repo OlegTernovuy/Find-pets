@@ -1,10 +1,10 @@
 import React from "react";
-import { Search } from "../components/pets/Search";
-import { CategoryFind } from "../components/layout/CategoryFind";
-import { PetsCards } from "../components/pets/PetsCards";
-import { Hero } from "../components/layout/Hero";
-import { useAppSelector } from "../hook/redux";
-import { CardSkeleton } from "../components/layout/Skeleton/Skeleton";
+import { Search } from "../pets/Search";
+import { CategoryFind } from "../layout/CategoryFind";
+import { PetsCards } from "../pets/PetsCards";
+import { Hero } from "../layout/Hero";
+import { useAppSelector } from "../../hook/redux";
+import { CardSkeleton } from "../layout/Skeleton/Skeleton";
 
 export const MainPage = () => {
   const { loading, error } = useAppSelector((state) => state.pets);

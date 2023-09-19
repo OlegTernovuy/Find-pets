@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 export const Navbar = () => {
@@ -10,26 +10,25 @@ export const Navbar = () => {
     setNav(!nav);
   };
 
-  const { user, googleSignIn, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // const { user, googleSignIn, logOut } = UserAuth();
+  const { user, logOut } = useContext(AuthContext);
+
   const [loading, setLoading] = useState(true);
-
-  const handleSignIn = async () => {
-    try {
-      await googleSignIn();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleSignOut = async () => {
     try {
       await logOut();
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handlePhoneSignOut = () => {
+    handleSignOut();
+    handleNav();
+  }
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -49,10 +48,12 @@ export const Navbar = () => {
         <li className="nav-li">Account</li>
         {loading ? null : !user ? (
           <ul className="flex">
-            <li onClick={handleSignIn} className="nav-li">
+            <Link to={"/signIn"} className="nav-li">
               Sign In
-            </li>
-            <li className="nav-li">Sign Up</li>
+            </Link>
+            <Link to={"/signUp"} className="nav-li">
+              Sign Up
+            </Link>
           </ul>
         ) : (
           <ul className="flex">
@@ -69,7 +70,7 @@ export const Navbar = () => {
       <div
         className={
           nav
-            ? "fixed left-0 top-0 w-3/5 h-full bg-[#2f3655] ease-in-out duration-300"
+            ? "fixed left-0 top-0 w-3/5 h-full bg-[#2f3655] ease-in-out duration-300 z-10"
             : "fixed left-[-100%]"
         }
       >
@@ -79,14 +80,36 @@ export const Navbar = () => {
             Home
           </Link>
           <li className="nav-li border-b">Account</li>
-          <Link
-            to={"/auth"}
-            onClick={handleNav}
-            className="nav-li border-b w-full"
-          >
-            Sign In
-          </Link>
-          <li className="nav-li border-b">Sign Up</li>
+          {loading ? null : !user ? (
+            <ul className="flex flex-col">
+              <Link
+                to={"/signIn"}
+                onClick={handleNav}
+                className="nav-li border-b w-full"
+              >
+                Sign In
+              </Link>
+              <Link
+                to={"/signUp"}
+                onClick={handleNav}
+                className="nav-li border-b w-full"
+              >
+                Sign Up
+              </Link>
+            </ul>
+          ) : (
+            <ul className="flex flex-col">
+              <li
+                className="nav-li border-b w-full cursor-pointer"
+                onClick={handlePhoneSignOut}
+              >
+                Sign out
+              </li>
+              <p className="nav-li border-b w-full">
+                Welcome, {user.displayName}
+              </p>
+            </ul>
+          )}
         </ul>
       </div>
     </div>

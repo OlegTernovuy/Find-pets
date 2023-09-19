@@ -10,8 +10,21 @@ export interface IPets {
   title: string;
 }
 
-export type IPetsSell = string
+type IPetsSell = string
 
 export interface IFilter {
   sell: IPetsSell;
+}
+
+export interface IForm {
+  email: string;
+  password: string;
+}
+
+export interface IFormProps {
+  buttonText: string;
+  haveAccount: string;
+  haveAccountText: string;
+  haveAccountLink: string;
+  EmailAndPasswordAuth: (data: IForm) => {};
 }
