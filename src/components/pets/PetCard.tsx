@@ -2,8 +2,8 @@ import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { IPets } from "../../types/models";
 import { useAppDispatch } from "../../hook/redux";
-import { addToFavorites } from "../../store/slices/petsSlice";
 import { useNavigate } from "react-router";
+import { addToFavorites } from "../../store/actions/petsActions";
 
 interface PetCardProps {
   pet: IPets;
@@ -14,11 +14,10 @@ export const PetCard = ({ pet }: PetCardProps) => {
   const navigate = useNavigate();
 
   const handleLiked = (
-    id: number,
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     e.stopPropagation();
-    dispatch(addToFavorites(id));
+    dispatch(addToFavorites(pet));
   };
 
   const handleNavigate = () => navigate(`pet/${pet.id}`);
@@ -31,7 +30,7 @@ export const PetCard = ({ pet }: PetCardProps) => {
           {pet?.sell}
         </div>
         <div
-          onClick={(e) => handleLiked(pet?.id, e)}
+          onClick={(e) => handleLiked(e)}
           className="h-7 w-7 bg-white rounded-full opacity-50 absolute top-3 right-3 cursor-pointer"
         >
           <AiFillHeart

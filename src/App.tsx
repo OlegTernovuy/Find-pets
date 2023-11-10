@@ -8,7 +8,7 @@ import { SignInPage } from "./components/pages/SignInPage";
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
       <Routes>
         <Route path={"/"} element={<MainPage />} />
@@ -16,7 +16,7 @@ function App() {
         <Route path={"/signIn"} element={<SignInPage />} />
         <Route path={"/pet/:id"} element={<PetPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

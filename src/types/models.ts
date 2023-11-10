@@ -28,3 +28,8 @@ export interface IFormProps {
   haveAccountLink: string;
   EmailAndPasswordAuth: (data: IForm) => {};
 }
+
+export interface IPet {
+  id: number
+  liked: boolean
+}

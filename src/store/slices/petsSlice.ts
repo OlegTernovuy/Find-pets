@@ -17,68 +17,7 @@ interface PetsPayload {
 const initialState: PetsState = {
   loading: false,
   error: "",
-  pets: [
-    // {
-    //     id: 1,
-    //     sell: 'sell',
-    //     liked: false,
-    //     photo: dog,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-    //   {
-    //     id: 2,
-    //     sell: 'sell',
-    //     liked: false,
-    //     photo: dog1,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-    //   {
-    //     id: 3,
-    //     sell: 'sell',
-    //     liked: true,
-    //     photo: dog,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-    //   {
-    //     id: 4,
-    //     sell: 'sell',
-    //     liked: false,
-    //     photo: dog1,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-    //   {
-    //     id: 5,
-    //     sell: 'in good hands',
-    //     liked: true,
-    //     photo: dog,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-    //   {
-    //     id: 6,
-    //     sell: 'sell',
-    //     liked: false,
-    //     photo: dog1,
-    //     Breed: "Pomeranian",
-    //     Place: "Lyiv",
-    //     Age: "one year",
-    //     Price: "50$",
-    //   },
-  ],
+  pets: [],
   petsContainer: [],
   count: 0
 };
@@ -100,11 +39,13 @@ export const petsSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    addToFavorites: (state, action: PayloadAction<number>) => {
+    ToFavorites: (state, action: PayloadAction<number>) => {
       const id = action.payload;
-      const petExists = state.pets.find((item) => item.id === id);
-      if (petExists) {
-        petExists.liked = !petExists.liked;
+      const petExistsState = state.pets.find((item) => item.id === id);
+      const petExistsContainer = state.petsContainer.find((item) => item.id === id);
+      if (petExistsState && petExistsContainer) {
+        petExistsState.liked = !petExistsState.liked;
+        petExistsContainer.liked = !petExistsContainer.liked;
       }
     },
     sellFilter: (state, action: PayloadAction<IFilter>) => {
@@ -115,6 +56,6 @@ export const petsSlice = createSlice({
 });
 
 export const { actions } = petsSlice;
-export const { addToFavorites } = petsSlice.actions;
+export const { ToFavorites } = petsSlice.actions;
 
 export default petsSlice;
